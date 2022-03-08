@@ -11,6 +11,25 @@ function App() {
     setTodoList(newTodoList);
   }
 
+  // server 3001
+  const URL = 'http://localhost:3001/todos'
+  const createHandler = () => {
+    return fetch(URL, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify({
+        "title": "99",
+        "description": "description"
+    }), // body data type must match "Content-Type" header
+  }).then(json => json.json()).then(res => {
+    console.log(res);
+    setTodoList([...todoList, {id: res.id, todo: res.title}])
+  })
+  }
+
   return (
     <main>
       <h1>
@@ -22,6 +41,7 @@ function App() {
           <List key={list.id} id={list.id} todo={list.todo} removeTodoList={removeTodoList} />
         ))}
       </ul>
+      <button onClick={createHandler}>create</button>
     </main>
   );
 }
