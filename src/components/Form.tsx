@@ -23,12 +23,15 @@ export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
 
   const inputHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => setText(target.value);
   
-  const onClickHander = ():void => addTodoList(uuidv4(), text)
+  const onClickHander = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    addTodoList(uuidv4(), text)
+  }
 
   return (
-    <div>
+    <form>
       <input value={text} onChange={inputHandler} />
       <button onClick={onClickHander}>추가</button>
-    </div>
+    </form>
   );
 };
