@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import './App.css';
 import { GlobalStyles } from './theme/GlobalStyles';
 import styled from 'styled-components'
 import { Form } from './components/Form';

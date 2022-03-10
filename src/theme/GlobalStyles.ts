@@ -31,6 +31,6 @@ export const GlobalStyles = createGlobalStyle`
 
   :root {
     --color__primary: darkcyan;
-    --color__second: #556868;
+    --color__second: #878c8c;
   }
 `;
