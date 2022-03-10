@@ -1,0 +1,27 @@
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    "allowJs": true,
+    "paths": {
+      "@lib/*": ["lib/*"],
+      "@pages/*": ["pages/*"],
+      "@pagesImpl/*": ["pagesImpl/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pagesImpl/hashtag/__components__/HashtagVideoListItem.jsx", "pagesImpl/hashtag/__components__/HashtagVideoList.jsx", "pagesImpl/hashtag/hashtagImpl.jsx"],
+  "exclude": ["node_modules"]
+}
