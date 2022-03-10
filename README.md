@@ -1,4 +1,5 @@
 # TODO
+`yarn start:dev`
 
 ## TODO 추가, 삭제 구현
 
@@ -10,3 +11,5 @@
    5-1. input value 삭제
    5-2. 빈 문자열이면 return
 6. 삭제 버튼 누르면 (onClick 이벤트 발생) TODO list 배열에서 해당 리스트 삭제
+
+## TypeScript, Styled Components, yarn 변경
