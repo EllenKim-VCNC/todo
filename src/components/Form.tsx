@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-import { Todo } from '../interface';
-import styled from 'styled-components'
+import { Todo } from "../interface";
+import styled from "styled-components";
+import { createTodo } from "src/service/todoService";
 
 const FormWrapper = styled.form`
   display: flex;
   margin-bottom: 20px;
-`
+`;
 
 const InputWrapper = styled.input`
   width: calc(100% - 80px);
@@ -14,7 +14,7 @@ const InputWrapper = styled.input`
   border: 2px solid var(--color__primary);
   padding: 5px 10px;
   border-radius: 5px 0 0 5px;
-`
+`;
 
 const AddButton = styled.button`
   background-color: var(--color__primary);
@@ -24,8 +24,7 @@ const AddButton = styled.button`
   color: #fff;
   display: block;
   word-break: keep-all;
-`
-  
+`;
 
 interface Props {
   todoList: Todo[];
@@ -33,30 +32,38 @@ interface Props {
 }
 
 export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
-  const [text, setText] = useState<string>();
+  const [text, setText] = useState<string>("");
 
-  const clearUserInput = () => setText('');
+  const clearUserInput = () => setText("");
 
-  const addTodoList = (id: string, text: string = '') => {
-    if (text === '') return;
+  const inputHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
+    setText(target.value);
 
-    const newTodoList = [...todoList, { id, text }];
+  // async를 사용하는 이유
+  const createHandler = async (description: string | undefined) => {
+    const res = await createTodo(description);
 
-    setTodoList(newTodoList);
-    clearUserInput();
+    setTodoList([
+      ...todoList,
+      {
+        id: res.id,
+        title: res.title,
+        description: res.description,
+        status: res.status,
+      },
+    ]);
   };
 
-  const inputHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => setText(target.value);
-  
-  const onClickHander = (e: { preventDefault: () => void; }) => {
+  const onClickHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    addTodoList(uuidv4(), text)
-  }
+    createHandler(text);
+    clearUserInput();
+  };
 
   return (
     <FormWrapper>
       <InputWrapper value={text} onChange={inputHandler} />
-      <AddButton onClick={onClickHander}>추가</AddButton>
+      <AddButton onClick={onClickHandler}>추가</AddButton>
     </FormWrapper>
   );
 };
