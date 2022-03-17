@@ -1,3 +1,5 @@
+import { TodoStatus } from "src/interface";
+
 const URL = "http://localhost:3001/todos";
 
 export const getAllBoards = async () => {
@@ -34,6 +36,22 @@ export const deleteTodoById = async (id: string) => {
     },
     body: JSON.stringify({
       id,
+    }),
+  });
+
+  const res = await data.json();
+  return res;
+};
+
+export const updateTodoStatus = async (id: string, status: TodoStatus) => {
+  const data = await fetch(`${URL}/${id}/status`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id,
+      status,
     }),
   });
 

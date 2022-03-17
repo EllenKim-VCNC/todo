@@ -10,7 +10,7 @@ const TodoMain = styled.main`
   position: relative;
   width: 50vw;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: var(--color__second);
   padding: 30px 30px 50px;
   border-radius: 10px;
   box-shadow: 0px 0px 30px #00000076;
@@ -47,8 +47,8 @@ export const App: React.FC = () => {
           {todoList.map((list) => (
             <List
               key={list.id}
-              id={list.id}
-              description={list.description}
+              list={list}
+              todoList={todoList}
               setTodoList={setTodoList}
             />
           ))}

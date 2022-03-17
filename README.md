@@ -1,5 +1,6 @@
 # TODO
-`yarn start:dev`
+
+`yarn start`
 
 ## TODO 추가, 삭제 구현
 
@@ -13,3 +14,14 @@
 6. 삭제 버튼 누르면 (onClick 이벤트 발생) TODO list 배열에서 해당 리스트 삭제
 
 ## TypeScript, Styled Components, yarn 변경
+
+## CRUD 구현
+
+1. Promise => async, await
+2. Create, Read, Delete 구현
+3. service 분리
+4. Update 구현
+
+## todo
+
+- [ ] fetch => axios로 변환, 차이

@@ -9,11 +9,11 @@ const FormWrapper = styled.form`
 `;
 
 const InputWrapper = styled.input`
-  width: calc(100% - 80px);
   width: 100%;
-  border: 2px solid var(--color__primary);
   padding: 5px 10px;
+  border: 2px solid var(--color__primary);
   border-radius: 5px 0 0 5px;
+  background-color: var(--color__second);
 `;
 
 const AddButton = styled.button`
@@ -56,6 +56,8 @@ export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
 
   const onClickHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    if (text === "") return;
+
     createHandler(text);
     clearUserInput();
   };

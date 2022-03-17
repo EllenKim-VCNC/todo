@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -31,6 +31,7 @@ export const GlobalStyles = createGlobalStyle`
 
   :root {
     --color__primary: darkcyan;
-    --color__second: #878c8c;
+    --color__second: #e8f1f1;
+    --color__open: #4e4e4e;
   }
 `;
