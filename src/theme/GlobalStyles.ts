@@ -8,15 +8,6 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: darkcyan;
-  }
-
   ul {
     margin: 0;
     padding: 0;

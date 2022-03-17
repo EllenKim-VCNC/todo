@@ -6,6 +6,16 @@ import { List } from "./components/List";
 import { Todo } from "./interface";
 import { getAllBoards } from "./service/todoService";
 
+const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: darkcyan;
+  padding: 50px 20px;
+`;
+
 const TodoMain = styled.main`
   position: relative;
   width: 50vw;
@@ -38,7 +48,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <MainWrapper>
       <GlobalStyles />
       <TodoMain>
         <Title>TODO</Title>
@@ -54,7 +64,7 @@ export const App: React.FC = () => {
           ))}
         </TodoListWrapper>
       </TodoMain>
-    </>
+    </MainWrapper>
   );
 };
 

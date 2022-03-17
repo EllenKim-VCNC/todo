@@ -65,7 +65,7 @@ export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
   return (
     <FormWrapper>
       <InputWrapper value={text} onChange={inputHandler} />
-      <AddButton onClick={onClickHandler}>추가</AddButton>
+      <AddButton onClick={onClickHandler}>ADD</AddButton>
     </FormWrapper>
   );
 };

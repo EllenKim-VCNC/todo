@@ -4,9 +4,13 @@ import { deleteTodoById, updateTodoStatus } from "src/service/todoService";
 import styled, { css } from "styled-components";
 
 const ListWrapper = styled.li`
-  padding: 15px 0;
-  border-bottom: 1px dashed var(--color__second);
+  padding: 30px 0;
+  border-bottom: 1px solid #c6c6c6;
   word-break: break-all;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -25,7 +29,6 @@ const StyledButton = styled.button`
 
   box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
     7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
-  transition: box-shadow 0.6s cubic-bezier(0.79, 0.21, 0.06, 0.81);
 
   &:active {
     box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
