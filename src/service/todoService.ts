@@ -2,6 +2,8 @@ import { TodoStatus } from "src/interface";
 
 const URL = "http://localhost:3001/todos";
 
+// 질문: 에러처리는 어떻게? => fetch manager
+// 질문: service 분리 => hook으로 생성
 export const getAllBoards = async () => {
   const data = await fetch(URL, {
     method: "GET",

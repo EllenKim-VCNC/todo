@@ -39,7 +39,6 @@ export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
   const inputHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setText(target.value);
 
-  // async를 사용하는 이유
   const createHandler = async (description: string | undefined) => {
     const res = await createTodo(description);
 

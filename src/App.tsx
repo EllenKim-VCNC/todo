@@ -42,9 +42,14 @@ export const App: React.FC = () => {
     setTodoList(res);
   };
 
-  // init할 때, useEffect로 불러오는 것이 맞는지?
+  // 질문: init할 때, useEffect로 불러오는 것이 맞는지?
+  // useEffectOnce, react-use
   useEffect(() => {
     getAllTodo();
+
+    return () => {
+      // unmount
+    };
   }, []);
 
   return (
