@@ -1,9 +1,43 @@
 import { useState } from "react";
+import { signIn, signUp } from "src/service/authService";
 import styled from "styled-components";
 import { Title } from "./Title";
 
 export const SignIn = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const inputIdHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(target.value);
+  };
+
+  const inputPasswordHandler = ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(target.value);
+  };
+
+  const onClickSignInHandler = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    const res = await signIn(username, password);
+    console.log(res);
+  };
+
+  const onClickSignUpHandler = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    const res = await signUp(username, password);
+
+    if (res === "Created") {
+      setTimeout(() => {
+        setIsSignIn(true);
+        setUsername("");
+        setPassword("");
+      }, 1000);
+    }
+  };
 
   return (
     <>
@@ -11,14 +45,18 @@ export const SignIn = () => {
         <Title>🌝 SIGN IN</Title>
         <div>
           <Label htmlFor="username">username</Label>
-          <Input id="username" type="text" />
+          <Input id="username" type="text" onChange={inputIdHandler} />
         </div>
         <div>
           <Label htmlFor="password">password</Label>
-          <Input id="password" type="password" />
+          <Input
+            id="password"
+            type="password"
+            onChange={inputPasswordHandler}
+          />
         </div>
         <ButtonWrapper>
-          <Button>sign in</Button>
+          <Button onClick={onClickSignInHandler}>sign in</Button>
           <Line />
           Create An Account
           <Button
@@ -36,14 +74,18 @@ export const SignIn = () => {
         <Title>🌚 SIGN UP</Title>
         <div>
           <Label htmlFor="username">username</Label>
-          <Input id="username" type="text" />
+          <Input id="username" type="text" onChange={inputIdHandler} />
         </div>
         <div>
           <Label htmlFor="password">password</Label>
-          <Input id="password" type="password" />
+          <Input
+            id="password"
+            type="password"
+            onChange={inputPasswordHandler}
+          />
         </div>
         <ButtonWrapper>
-          <Button>sign up</Button>
+          <Button onClick={onClickSignUpHandler}>sign up</Button>
           <Button
             onClick={(e) => {
               e.preventDefault();
