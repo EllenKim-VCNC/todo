@@ -2,14 +2,19 @@ import { GlobalStyles } from "./theme/GlobalStyles";
 import styled from "styled-components";
 import { Todo } from "./components/Todo";
 import { SignIn } from "./components/SignIn";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export const App: React.FC = () => {
   return (
     <MainWrapper>
       <GlobalStyles />
       <TodoMain>
-        <SignIn />
-        {/* <Todo /> */}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<SignIn />} />
+            <Route path="/todo" element={<Todo />} />
+          </Routes>
+        </BrowserRouter>
       </TodoMain>
     </MainWrapper>
   );

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { signIn, signUp } from "src/service/authService";
 import styled from "styled-components";
 import { Title } from "./Title";
@@ -7,6 +8,7 @@ export const SignIn = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const inputIdHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(target.value);
@@ -22,9 +24,9 @@ export const SignIn = () => {
     e.preventDefault();
 
     const res = await signIn(username, password);
-
     if (res.accessToken) {
       alert("login!");
+      navigate("/todo");
     }
   };
 

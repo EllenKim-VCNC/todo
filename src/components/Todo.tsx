@@ -11,11 +11,12 @@ export const Todo = () => {
 
   const getAllTodo = async () => {
     const res = await getAllBoards();
+
     setTodoList(res);
   };
 
   useEffect(() => {
-    // getAllTodo();
+    getAllTodo();
   }, []);
 
   return (
