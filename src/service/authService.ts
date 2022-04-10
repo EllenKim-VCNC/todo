@@ -16,7 +16,6 @@ export const signUp = async (username: string, password: string) => {
   // const res = await data.json();
 
   if (data.status === 201) return "Created";
-
   if (data.status === 409) return "Existing username";
 };
 
@@ -31,6 +30,8 @@ export const signIn = async (username: string, password: string) => {
       password,
     }),
   });
+
   const res = await data.json();
+  localStorage.setItem("access-token", res.accessToken);
   return res;
 };

@@ -22,7 +22,10 @@ export const SignIn = () => {
     e.preventDefault();
 
     const res = await signIn(username, password);
-    console.log(res);
+
+    if (res.accessToken) {
+      alert("login!");
+    }
   };
 
   const onClickSignUpHandler = async (e: { preventDefault: () => void }) => {
