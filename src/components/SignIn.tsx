@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signIn, signUp } from "src/service/authService";
 import styled from "styled-components";
@@ -43,6 +43,12 @@ export const SignIn = () => {
       }, 1000);
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("access-token")) {
+      navigate("/todo");
+    }
+  }, [navigate]);
 
   return (
     <>

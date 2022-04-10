@@ -5,9 +5,11 @@ import { List } from "./List";
 import { TodoInterface } from "../interface";
 import { getAllBoards } from "../service/todoService";
 import { Title } from "./Title";
+import { useNavigate } from "react-router";
 
 export const Todo = () => {
   const [todoList, setTodoList] = useState<TodoInterface[]>([]);
+  const navigate = useNavigate();
 
   const getAllTodo = async () => {
     const res = await getAllBoards();
@@ -18,6 +20,12 @@ export const Todo = () => {
   useEffect(() => {
     getAllTodo();
   }, []);
+
+  useEffect(() => {
+    if (!localStorage.getItem("access-token")) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <>
