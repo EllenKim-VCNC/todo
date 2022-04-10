@@ -24,5 +24,6 @@ export const GlobalStyles = createGlobalStyle`
     --color__primary: darkcyan;
     --color__second: #e8f1f1;
     --color__open: #4e4e4e;
+    --color__dark: #154747;
   }
 `;

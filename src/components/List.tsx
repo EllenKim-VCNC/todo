@@ -1,5 +1,5 @@
 import React from "react";
-import { Todo, TodoStatus } from "src/interface";
+import { TodoInterface, TodoStatus } from "src/interface";
 import { deleteTodoById, updateTodoStatus } from "src/service/todoService";
 import styled, { css } from "styled-components";
 
@@ -80,9 +80,9 @@ const ProgressButton = styled(StyledButton)<{ status: boolean }>`
 `;
 
 interface Props {
-  list: Todo;
-  todoList: Todo[];
-  setTodoList: (todoList: Todo[]) => void;
+  list: TodoInterface;
+  todoList: TodoInterface[];
+  setTodoList: (todoList: TodoInterface[]) => void;
 }
 
 export const List: React.FC<Props> = ({ list, todoList, setTodoList }) => {

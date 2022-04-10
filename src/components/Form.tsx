@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Todo } from "../interface";
+import { TodoInterface } from "../interface";
 import styled from "styled-components";
 import { createTodo } from "src/service/todoService";
 
@@ -27,8 +27,8 @@ const AddButton = styled.button`
 `;
 
 interface Props {
-  todoList: Todo[];
-  setTodoList: (todoList: Todo[]) => void;
+  todoList: TodoInterface[];
+  setTodoList: (todoList: TodoInterface[]) => void;
 }
 
 export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
