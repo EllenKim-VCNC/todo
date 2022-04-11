@@ -1,8 +1,8 @@
 import { GlobalStyles } from "./theme/GlobalStyles";
 import styled from "styled-components";
 import { Todo } from "./components/Todo";
-import { SignIn } from "./components/SignIn";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Auth } from "./components/Auth";
 
 export const App: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ export const App: React.FC = () => {
       <TodoMain>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SignIn />} />
+            <Route path="/" element={<Auth />} />
             <Route path="/todo" element={<Todo />} />
           </Routes>
         </BrowserRouter>

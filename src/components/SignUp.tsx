@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signIn } from "src/service/authService";
-import styled from "styled-components";
+import { signUp } from "src/service/authService";
 import { Title, Button, ButtonWrapper, Input, Label } from "./AuthStyles";
+
 interface Props {
-  onSignUp: () => void;
+  onBack: () => void;
 }
 
-export const SignIn = ({ onSignUp }: Props) => {
+export const SignUp = ({ onBack }: Props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const inputIdHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(target.value);
@@ -22,24 +20,33 @@ export const SignIn = ({ onSignUp }: Props) => {
     setPassword(target.value);
   };
 
-  const onClickSignInHandler = async (e: { preventDefault: () => void }) => {
+  const onClickSignUpHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const res = await signIn(username, password);
-    if (res.accessToken) {
-      alert("login!");
-      navigate("/todo");
+    const res = await signUp(username, password);
+
+    if (res === "Created") {
+      setTimeout(() => {
+        alert("Create An Account!");
+        setUsername("");
+        setPassword("");
+        onBack();
+      }, 1000);
+    }
+
+    if (res === "Existing username") {
+      alert("Existing username!");
     }
   };
 
-  const onClickSignUpHandler = (e: { preventDefault: () => void }) => {
+  const onClicBackHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    onSignUp();
+    onBack();
   };
 
   return (
     <>
-      <Title>🌝 SIGN IN</Title>
+      <Title>🌚 SIGN UP</Title>
       <div>
         <Label htmlFor="username">username</Label>
         <Input id="username" type="text" onChange={inputIdHandler} />
@@ -49,18 +56,9 @@ export const SignIn = ({ onSignUp }: Props) => {
         <Input id="password" type="password" onChange={inputPasswordHandler} />
       </div>
       <ButtonWrapper>
-        <Button onClick={onClickSignInHandler}>sign in</Button>
-        <Line />
-        Create An Account
         <Button onClick={onClickSignUpHandler}>sign up</Button>
+        <Button onClick={onClicBackHandler}>back</Button>
       </ButtonWrapper>
     </>
   );
 };
-
-const Line = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: var(--color__primary);
-  opacity: 0.5;
-`;

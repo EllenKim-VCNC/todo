@@ -4,9 +4,10 @@ import { Form } from "./Form";
 import { List } from "./List";
 import { TodoInterface } from "../interface";
 import { getAllBoards } from "../service/todoService";
-import { Title } from "./Title";
+
 import { useNavigate } from "react-router";
 import { getCookie } from "src/utils/getCookie";
+import { Title } from "./AuthStyles";
 
 export const Todo = () => {
   const [todoList, setTodoList] = useState<TodoInterface[]>([]);
