@@ -6,6 +6,7 @@ import { TodoInterface } from "../interface";
 import { getAllBoards } from "../service/todoService";
 import { Title } from "./Title";
 import { useNavigate } from "react-router";
+import { getCookie } from "src/utils/getCookie";
 
 export const Todo = () => {
   const [todoList, setTodoList] = useState<TodoInterface[]>([]);
@@ -22,7 +23,7 @@ export const Todo = () => {
   }, []);
 
   useEffect(() => {
-    if (!localStorage.getItem("access-token")) {
+    if (!getCookie("access-token")) {
       navigate("/");
     }
   }, [navigate]);

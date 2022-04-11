@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signIn, signUp } from "src/service/authService";
+import { getCookie } from "src/utils/getCookie";
 import styled from "styled-components";
 import { Title } from "./Title";
 
@@ -45,7 +46,7 @@ export const SignIn = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("access-token")) {
+    if (getCookie("access-token")) {
       navigate("/todo");
     }
   }, [navigate]);
