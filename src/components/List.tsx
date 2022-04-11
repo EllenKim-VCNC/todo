@@ -98,9 +98,11 @@ export const List: React.FC<Props> = ({ list, todoList, setTodoList }) => {
     setTodoList(newTodoList);
   };
 
-  const onClickDeleteHandler = async () => {
-    const res = await deleteTodoById(id);
-    setTodoList(res);
+  const onClickDeleteHandler = () => {
+    deleteTodoById(id);
+    const newTodoList = todoList.filter((list) => list.id !== id);
+
+    setTodoList(newTodoList);
   };
 
   return (

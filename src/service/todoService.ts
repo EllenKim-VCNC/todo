@@ -33,7 +33,7 @@ export const createTodo = async (description: string | undefined) => {
 };
 
 export const deleteTodoById = async (id: string) => {
-  const data = await fetch(`${URL}/${id}`, {
+  await fetch(`${URL}/${id}`, {
     method: "DELETE",
     headers: new Headers({
       "Content-Type": "application/json",
@@ -42,8 +42,8 @@ export const deleteTodoById = async (id: string) => {
   });
 
   // Q. Uncaught (in promise) SyntaxError: Unexpected end of JSON input at signUp 에러
-  const res = await data.json();
-  return res;
+  // const res = await data.json();
+  // return res;
 };
 
 export const updateTodoStatus = async (id: string, status: TodoStatus) => {
