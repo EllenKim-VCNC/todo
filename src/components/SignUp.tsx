@@ -57,7 +57,9 @@ export const SignUp = ({ onBack }: Props) => {
       </div>
       <ButtonWrapper>
         <Button onClick={onClickSignUpHandler}>sign up</Button>
-        <Button onClick={onClicBackHandler}>back</Button>
+        <Button onClick={onClicBackHandler} color={"--color__gray"}>
+          back
+        </Button>
       </ButtonWrapper>
     </>
   );

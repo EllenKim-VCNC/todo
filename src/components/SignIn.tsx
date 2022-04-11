@@ -52,7 +52,9 @@ export const SignIn = ({ onSignUp }: Props) => {
         <Button onClick={onClickSignInHandler}>sign in</Button>
         <Line />
         Create An Account
-        <Button onClick={onClickSignUpHandler}>sign up</Button>
+        <Button onClick={onClickSignUpHandler} color={"--color__dark"}>
+          sign up
+        </Button>
       </ButtonWrapper>
     </>
   );

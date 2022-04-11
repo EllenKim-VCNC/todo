@@ -7,7 +7,7 @@ import { getAllBoards } from "../service/todoService";
 
 import { useNavigate } from "react-router";
 import { getCookie } from "src/utils/getCookie";
-import { Title } from "./AuthStyles";
+import { Button, Title } from "./AuthStyles";
 
 export const Todo = () => {
   const [todoList, setTodoList] = useState<TodoInterface[]>([]);
@@ -29,6 +29,11 @@ export const Todo = () => {
     }
   }, [navigate]);
 
+  function deleteCookie() {
+    document.cookie = "access-token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    navigate("/");
+  }
+
   return (
     <>
       <Title>TODO</Title>
@@ -43,6 +48,9 @@ export const Todo = () => {
           />
         ))}
       </TodoListWrapper>
+      <Button onClick={deleteCookie} color={"--color__gray"}>
+        log out
+      </Button>
     </>
   );
 };
