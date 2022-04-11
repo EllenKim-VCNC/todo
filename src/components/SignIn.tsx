@@ -27,8 +27,17 @@ export const SignIn = ({ onSignUp }: Props) => {
 
     const res = await signIn(username, password);
     if (res.accessToken) {
-      alert("login!");
+      alert("sign in! 🥳");
       navigate("/todo");
+    }
+
+    // Q. 로그인 실패시 에러처리 방법
+    if (res.statusCode === 400) {
+      alert(res.message[0]);
+    }
+
+    if (res.statusCode === 401) {
+      alert(res.message);
     }
   };
 

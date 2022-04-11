@@ -32,7 +32,11 @@ export const signIn = async (username: string, password: string) => {
   });
 
   const res = await data.json();
+
   // Q. 로컬스토리지가 아닌 쿠키를 추천한 이유
-  document.cookie = `access-token=${res.accessToken}`;
+  if (res.accessToken) {
+    document.cookie = `access-token=${res.accessToken}`;
+  }
+
   return res;
 };
