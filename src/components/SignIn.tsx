@@ -32,6 +32,8 @@ export const SignIn = ({ onSignUp }: Props) => {
     }
 
     // Q. 로그인 실패시 에러처리 방법
+    // 페이지마다 다를땐 Signin컴포넌트에서 관리
+    // 아니면, service에서 공통으로 처리
     if (res.statusCode === 400) {
       alert(res.message[0]);
     }

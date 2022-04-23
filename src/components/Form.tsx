@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TodoInterface } from "../interface";
 import styled from "styled-components";
-import { createTodo } from "src/service/todoService";
+import { createTodo, getAllBoards } from "src/service/todoService";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -40,17 +40,14 @@ export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
     setText(target.value);
 
   const createHandler = async (description: string | undefined) => {
-    const res = await createTodo(description);
+    await createTodo(description);
+    const res = await getAllBoards();
 
-    setTodoList([
-      ...todoList,
-      {
-        id: res.id,
-        title: res.title,
-        description: res.description,
-        status: res.status,
-      },
-    ]);
+    // setTimeout(() => {
+    //   getAllBoards();
+    // }, 2000);
+
+    setTodoList(res);
   };
 
   const onClickHandler = (e: { preventDefault: () => void }) => {

@@ -7,10 +7,11 @@ export const getAllBoards = async () => {
   const data = await fetch(URL, {
     method: "GET",
     // Q. Hedaers 객체를 생성하는 이유?
-    headers: new Headers({
+    // 함수로 변환하기
+    headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getCookie("access-token")}`,
-    }),
+    },
   });
   const res = await data.json();
   return res;
@@ -29,6 +30,7 @@ export const createTodo = async (description: string | undefined) => {
     }),
   });
   const res = await data.json();
+  // 서버에서 getAllBoards를 주면..!! good!
   return res;
 };
 
