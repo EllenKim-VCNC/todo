@@ -25,17 +25,17 @@ export const SignUp = ({ onBack }: Props) => {
 
     const res = await signUp(username, password);
 
-    if (res === "Created") {
+    if (res.username) {
       setTimeout(() => {
         alert("Create An Account!");
         setUsername("");
         setPassword("");
         onBack();
       }, 1000);
-    }
-
-    if (res === "Existing username") {
-      alert("Existing username!");
+    } else if (res.error) {
+      alert(res.message);
+    } else {
+      alert("Please restart");
     }
   };
 
