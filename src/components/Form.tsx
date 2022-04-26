@@ -27,13 +27,11 @@ const AddButton = styled.button`
 `;
 
 interface Props {
-  todoList: TodoInterface[];
   setTodoList: (todoList: TodoInterface[]) => void;
 }
 
-export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
+export const Form: React.FC<Props> = ({ setTodoList }) => {
   const [text, setText] = useState<string>("");
-
   const clearUserInput = () => setText("");
 
   const inputHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
@@ -42,11 +40,6 @@ export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
   const createHandler = async (description: string | undefined) => {
     await createTodo(description);
     const res = await getAllBoards();
-
-    // setTimeout(() => {
-    //   getAllBoards();
-    // }, 2000);
-
     setTodoList(res);
   };
 

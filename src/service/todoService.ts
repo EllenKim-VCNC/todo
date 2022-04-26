@@ -6,8 +6,6 @@ const URL = "http://localhost:3001/todos";
 export const getAllBoards = async () => {
   const data = await fetch(URL, {
     method: "GET",
-    // Q. Hedaers 객체를 생성하는 이유?
-    // 함수로 변환하기
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getCookie("access-token")}`,
@@ -18,7 +16,7 @@ export const getAllBoards = async () => {
 };
 
 export const createTodo = async (description: string | undefined) => {
-  const data = await fetch(URL, {
+  await fetch(URL, {
     method: "POST",
     headers: new Headers({
       "Content-Type": "application/json",
@@ -29,9 +27,6 @@ export const createTodo = async (description: string | undefined) => {
       description,
     }),
   });
-  const res = await data.json();
-  // 서버에서 getAllBoards를 주면..!! good!
-  return res;
 };
 
 export const deleteTodoById = async (id: string) => {
@@ -42,14 +37,10 @@ export const deleteTodoById = async (id: string) => {
       Authorization: `Bearer ${getCookie("access-token")}`,
     }),
   });
-
-  // Q. Uncaught (in promise) SyntaxError: Unexpected end of JSON input at signUp 에러
-  // const res = await data.json();
-  // return res;
 };
 
 export const updateTodoStatus = async (id: string, status: TodoStatus) => {
-  const data = await fetch(`${URL}/${id}/status`, {
+  await fetch(`${URL}/${id}/status`, {
     method: "PATCH",
     headers: new Headers({
       "Content-Type": "application/json",
@@ -60,7 +51,4 @@ export const updateTodoStatus = async (id: string, status: TodoStatus) => {
       status,
     }),
   });
-
-  const res = await data.json();
-  return res;
 };

@@ -30,8 +30,6 @@ export const signIn = async (username: string, password: string) => {
 
   const res = await data.json();
 
-  // Q. 로컬스토리지가 아닌 쿠키를 추천한 이유
-  // expired 설정 가능
   if (res.accessToken) {
     document.cookie = `access-token=${res.accessToken}`;
   }
