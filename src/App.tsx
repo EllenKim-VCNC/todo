@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Todo } from "./components/Todo";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Auth } from "./components/Auth";
+import React from 'react'
 
 export const App: React.FC = () => {
   return (

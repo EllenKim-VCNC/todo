@@ -85,22 +85,19 @@ const ProgressButton = styled(StyledButton)<{ status: boolean }>`
 
 interface Props {
   list: TodoInterface;
-  setTodoList: (todoList: TodoInterface[]) => void;
 }
 
-export const List: React.FC<Props> = ({ list, setTodoList }) => {
+export const List: React.FC<Props> = ({ list }) => {
   const { id, description, status } = list;
 
   const onClickUpdateHandler = async (status: TodoStatus) => {
     await updateTodoStatus(id, status);
     const res = await getAllBoards();
-    setTodoList(res);
   };
 
   const onClickDeleteHandler = async () => {
     await deleteTodoById(id);
     const res = await getAllBoards();
-    setTodoList(res);
   };
 
   return (

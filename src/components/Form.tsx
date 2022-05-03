@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { TodoInterface } from "../interface";
 import styled from "styled-components";
-import { createTodo, getAllBoards } from "src/service/todoService";
+import {useDispatch} from "react-redux";
+import {requestAddTodo} from "../store/reducers/todoReducer";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -27,27 +27,21 @@ const AddButton = styled.button`
 `;
 
 interface Props {
-  setTodoList: (todoList: TodoInterface[]) => void;
 }
 
-export const Form: React.FC<Props> = ({ setTodoList }) => {
+export const Form: React.FC<Props> = ( ) => {
+	const dispatch = useDispatch()
   const [text, setText] = useState<string>("");
   const clearUserInput = () => setText("");
 
   const inputHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setText(target.value);
 
-  const createHandler = async (description: string | undefined) => {
-    await createTodo(description);
-    const res = await getAllBoards();
-    setTodoList(res);
-  };
-
   const onClickHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (text === "") return;
 
-    createHandler(text);
+		dispatch(requestAddTodo(text))
     clearUserInput();
   };
 
