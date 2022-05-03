@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Todo } from "../interface";
+import { TodoInterface } from "../interface";
 import styled from "styled-components";
-import { createTodo } from "src/service/todoService";
+import { createTodo, getAllBoards } from "src/service/todoService";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -27,31 +27,20 @@ const AddButton = styled.button`
 `;
 
 interface Props {
-  todoList: Todo[];
-  setTodoList: (todoList: Todo[]) => void;
+  setTodoList: (todoList: TodoInterface[]) => void;
 }
 
-export const Form: React.FC<Props> = ({ todoList, setTodoList }) => {
+export const Form: React.FC<Props> = ({ setTodoList }) => {
   const [text, setText] = useState<string>("");
-
   const clearUserInput = () => setText("");
 
   const inputHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setText(target.value);
 
-  // async를 사용하는 이유
   const createHandler = async (description: string | undefined) => {
-    const res = await createTodo(description);
-
-    setTodoList([
-      ...todoList,
-      {
-        id: res.id,
-        title: res.title,
-        description: res.description,
-        status: res.status,
-      },
-    ]);
+    await createTodo(description);
+    const res = await getAllBoards();
+    setTodoList(res);
   };
 
   const onClickHandler = (e: { preventDefault: () => void }) => {

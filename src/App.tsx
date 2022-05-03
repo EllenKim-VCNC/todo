@@ -1,10 +1,26 @@
-import { useEffect, useState } from "react";
 import { GlobalStyles } from "./theme/GlobalStyles";
 import styled from "styled-components";
-import { Form } from "./components/Form";
-import { List } from "./components/List";
-import { Todo } from "./interface";
-import { getAllBoards } from "./service/todoService";
+import { Todo } from "./components/Todo";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Auth } from "./components/Auth";
+
+export const App: React.FC = () => {
+  return (
+    <MainWrapper>
+      <GlobalStyles />
+      <TodoMain>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Auth />} />
+            <Route path="/todo" element={<Todo />} />
+          </Routes>
+        </BrowserRouter>
+      </TodoMain>
+    </MainWrapper>
+  );
+};
+
+export default App;
 
 const MainWrapper = styled.div`
   display: flex;
@@ -25,47 +41,3 @@ const TodoMain = styled.main`
   border-radius: 10px;
   box-shadow: 0px 0px 30px #00000076;
 `;
-
-const Title = styled.h1`
-  color: var(--color__primary);
-`;
-
-const TodoListWrapper = styled.ul`
-  width: 100%;
-`;
-
-export const App: React.FC = () => {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
-
-  const getAllTodo = async () => {
-    const res = await getAllBoards();
-    setTodoList(res);
-  };
-
-  // init할 때, useEffect로 불러오는 것이 맞는지?
-  useEffect(() => {
-    getAllTodo();
-  }, []);
-
-  return (
-    <MainWrapper>
-      <GlobalStyles />
-      <TodoMain>
-        <Title>TODO</Title>
-        <Form todoList={todoList} setTodoList={setTodoList} />
-        <TodoListWrapper>
-          {todoList.map((list) => (
-            <List
-              key={list.id}
-              list={list}
-              todoList={todoList}
-              setTodoList={setTodoList}
-            />
-          ))}
-        </TodoListWrapper>
-      </TodoMain>
-    </MainWrapper>
-  );
-};
-
-export default App;

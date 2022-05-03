@@ -22,6 +22,24 @@
 3. service 분리
 4. Update 구현
 
+## Sign in, Sign up 구현
+
+1. Sign up
+
+- username, password 전송
+  => 성공 (return값이 없으면) Sign in으로 돌아가기
+  => 에러가 있다면 에러메세지 출력
+
+2. Sign in
+
+- usename, password 전송
+  => 성공 => 토큰 저장 => 저장된 토큰으로 Todo 출력 => Todo 보여주기
+  => 에러가 있다면 에러메세지 출력
+
+3. log out
+
+- cookie 삭제 => Sign in 페이지로 리다이렉트
+
 ## todo
 
 - [ ] fetch => axios로 변환, 차이

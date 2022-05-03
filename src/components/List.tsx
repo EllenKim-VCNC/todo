@@ -1,6 +1,10 @@
 import React from "react";
-import { Todo, TodoStatus } from "src/interface";
-import { deleteTodoById, updateTodoStatus } from "src/service/todoService";
+import { TodoInterface, TodoStatus } from "src/interface";
+import {
+  deleteTodoById,
+  updateTodoStatus,
+  getAllBoards,
+} from "src/service/todoService";
 import styled, { css } from "styled-components";
 
 const ListWrapper = styled.li`
@@ -80,26 +84,22 @@ const ProgressButton = styled(StyledButton)<{ status: boolean }>`
 `;
 
 interface Props {
-  list: Todo;
-  todoList: Todo[];
-  setTodoList: (todoList: Todo[]) => void;
+  list: TodoInterface;
+  setTodoList: (todoList: TodoInterface[]) => void;
 }
 
-export const List: React.FC<Props> = ({ list, todoList, setTodoList }) => {
+export const List: React.FC<Props> = ({ list, setTodoList }) => {
   const { id, description, status } = list;
 
   const onClickUpdateHandler = async (status: TodoStatus) => {
-    const res = await updateTodoStatus(id, status);
-
-    const newTodoList = todoList.map((list) =>
-      list.id === res.id ? res : list
-    );
-
-    setTodoList(newTodoList);
+    await updateTodoStatus(id, status);
+    const res = await getAllBoards();
+    setTodoList(res);
   };
 
   const onClickDeleteHandler = async () => {
-    const res = await deleteTodoById(id);
+    await deleteTodoById(id);
+    const res = await getAllBoards();
     setTodoList(res);
   };
 
